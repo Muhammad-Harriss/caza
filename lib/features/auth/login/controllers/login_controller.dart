@@ -12,7 +12,6 @@ class LoginController extends GetxController {
   final RxBool isPasswordHidden = true.obs;
   final RxBool isLoading        = false.obs;
 
-  // Field error messages
   final RxString emailError    = ''.obs;
   final RxString passwordError = ''.obs;
 
@@ -23,14 +22,13 @@ class LoginController extends GetxController {
   void goToForgotPassword() => Get.toNamed(AppRoutes.forgotPassword);
 
   bool _validate() {
-    bool valid = true;
-
-    // Clear all first so old errors don't persist between attempts
     emailError.value = '';
     passwordError.value = '';
 
     final email    = emailController.text.trim();
     final password = passwordController.text;
+
+    bool valid = true;
 
     if (email.isEmpty) {
       emailError.value = 'Email is required';
@@ -63,7 +61,8 @@ class LoginController extends GetxController {
       );
 
       if (response.user != null) {
-        Get.offAllNamed(AppRoutes.home);
+        // Navigate to biometric verification after successful login
+        Get.offAllNamed(AppRoutes.biometric);
       }
     } on AuthException catch (e) {
       _handleAuthError(e.message);
