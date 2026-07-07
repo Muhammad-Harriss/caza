@@ -10,7 +10,6 @@ import 'package:device_preview/device_preview.dart';
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
 import 'app/theme/app_theme.dart';
-import 'core/services/supabase_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,11 +41,10 @@ void main() async {
 class CazaApp extends StatelessWidget {
   const CazaApp({super.key});
 
-  // Decide initial route exactly once, here, at app launch.
-  // Onboarding itself no longer does any session redirect.
-  String get _initialRoute {
-    return SupabaseService.isLoggedIn ? AppRoutes.home : AppRoutes.onboarding;
-  }
+  // Always start from onboarding — home route is not registered yet.
+  // Once home screen is built and added to AppPages, update this to:
+  // return SupabaseService.isLoggedIn ? AppRoutes.home : AppRoutes.onboarding;
+  String get _initialRoute => AppRoutes.onboarding;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,6 @@ class CazaApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       initialRoute: _initialRoute,

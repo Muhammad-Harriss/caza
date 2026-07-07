@@ -21,7 +21,7 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
             children: [
               const Spacer(flex: 3),
 
-              // ─── Confetti + blue circle + checkmark (same as verified) ───
+              // ─── Confetti + circles + checkmark ──────────────────────────
               SizedBox(
                 width: 208,
                 height: 137.5,
@@ -66,7 +66,7 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
 
               const SizedBox(height: 24),
 
-              // ─── Your account is ready — w: 295 | h: 28 ─────────────────
+              // ─── Your account is ready ────────────────────────────────────
               SizedBox(
                 width: 295,
                 height: 28,
@@ -85,7 +85,7 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
 
               const SizedBox(height: 8),
 
-              // ─── Subtitle — w: 295 | h: 20 ───────────────────────────────
+              // ─── Subtitle ──────────────────────────────────────────────────
               SizedBox(
                 width: 295,
                 height: 20,
@@ -104,7 +104,7 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
 
               const Spacer(flex: 2),
 
-              // ─── Log In Button ────────────────────────────────────────────
+              // ─── Log In Button ─────────────────────────────────────────────
               SizedBox(
                 width: 343,
                 height: 40,

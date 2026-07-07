@@ -106,7 +106,7 @@ class FillProfileController extends GetxController {
       String? avatarUrl;
 
       if (profileImageBytes.value != null) {
-        final userId = SupabaseService.currentUserId;
+        final userId   = SupabaseService.currentUserId;
         final filePath = 'avatars/$userId.jpg';
 
         await SupabaseService.storage
@@ -125,27 +125,35 @@ class FillProfileController extends GetxController {
             .getPublicUrl(filePath);
       }
 
+      // Fix: use if-null spread instead of ?avatarUrl syntax
+      final Map<String, dynamic> metadata = {
+        'first_name': firstNameController.text.trim(),
+        'last_name': noLastName.value
+            ? firstNameController.text.trim()
+            : lastNameController.text.trim(),
+        'no_last_name': noLastName.value,
+        'profile_completed': true,
+      };
+      if (avatarUrl != null) {
+        metadata['avatar_url'] = avatarUrl;
+      }
+
       await SupabaseService.auth.updateUser(
-        UserAttributes(
-          data: {
-            'first_name': firstNameController.text.trim(),
-            'last_name': noLastName.value
-                ? firstNameController.text.trim()
-                : lastNameController.text.trim(),
-            'no_last_name': noLastName.value,
-            // null-aware: only include avatar_url key if avatarUrl is not null
-            'avatar_url': ?avatarUrl,
-            'profile_completed': true,
-          },
-        ),
+        UserAttributes(data: metadata),
       );
 
-      Get.offAllNamed(AppRoutes.home);
+      // Sign out so _initialRoute in main.dart returns onboarding
+      // then immediately navigate to accountReady which IS registered
+      await SupabaseService.auth.signOut();
+      Get.offAllNamed(AppRoutes.accountReady);
+
     } on StorageException catch (e) {
       Get.snackbar(
         'Upload Failed',
         e.message,
         snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFFFEF3F2),
+        colorText: const Color(0xFFB42318),
         margin: const EdgeInsets.all(16),
         borderRadius: 8,
       );
@@ -154,6 +162,8 @@ class FillProfileController extends GetxController {
         'Error',
         e.message,
         snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFFFEF3F2),
+        colorText: const Color(0xFFB42318),
         margin: const EdgeInsets.all(16),
         borderRadius: 8,
       );
@@ -162,6 +172,8 @@ class FillProfileController extends GetxController {
         'Error',
         'Something went wrong. Please try again.',
         snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFFFEF3F2),
+        colorText: const Color(0xFFB42318),
         margin: const EdgeInsets.all(16),
         borderRadius: 8,
       );
