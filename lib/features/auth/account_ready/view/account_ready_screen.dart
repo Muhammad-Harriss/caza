@@ -29,13 +29,13 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
                   alignment: Alignment.center,
                   children: [
                     // Confetti background
-                    Image.asset(
-                      'assets/images/Confetti.png',
+                    // Confetti background
+                    SvgPicture.asset(
+                      'assets/images/Confetti.svg',
                       width: 208,
                       height: 137.5,
                       fit: BoxFit.contain,
                     ),
-
                     // Light blue outer ring
                     Container(
                       width: 92,
@@ -118,9 +118,11 @@ class AccountReadyScreen extends GetView<AccountReadyController> {
                       borderRadius: BorderRadius.circular(4),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 10),
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
                   ),
-                  child: Text('Log In', style: AppTextStyles.buttonMd),
+                  child: Text('Next', style: AppTextStyles.buttonMd),
                 ),
               ),
 

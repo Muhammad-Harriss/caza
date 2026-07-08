@@ -19,7 +19,7 @@ abstract class AppRoutes {
 
   // Messages
   static const String messages               = '/messages';
-  static const String chat                   = '/chat';
+  
   static const String newConversation        = '/new-conversation';
   static const String messagesSearch         = '/messages/search';
   static const String starredMessages        = '/starred-messages';
@@ -55,4 +55,11 @@ abstract class AppRoutes {
   static const String notifications          = '/profile/notifications';
   static const String theme                  = '/profile/theme';
   static const String language               = '/profile/language';
+
+  //Personal Messages
+  static const personalMessage = '/personal-message';
+  static const newMessage = '/new-message';
+  static const chat = '/chat'; 
+
+
 }

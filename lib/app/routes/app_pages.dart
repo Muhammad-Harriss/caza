@@ -1,3 +1,9 @@
+import 'package:caza/features/messages/chat/bindings/chat_binding.dart';
+import 'package:caza/features/messages/chat/view/chat_view.dart';
+import 'package:caza/features/messages/new_messages/bindings/new_message_binding.dart';
+import 'package:caza/features/messages/new_messages/view/new_message_view.dart';
+import 'package:caza/features/messages/personal_messages/bindings/personal_message_binding.dart';
+import 'package:caza/features/messages/personal_messages/view/personal_message_view.dart';
 import 'package:get/get.dart';
 
 import 'package:caza/features/auth/forgot_password/bindings/forget_password_binding.dart';
@@ -28,7 +34,6 @@ class AppPages {
   static const initial = AppRoutes.onboarding;
 
   static final routes = [
-
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnboardingScreen(),
@@ -89,5 +94,22 @@ class AppPages {
       binding: AccountReadyBinding(),
       transition: Transition.fadeIn,
     ),
+    GetPage(
+      name: AppRoutes.personalMessage,
+      page: () => const PersonalMessageView(),
+      binding: PersonalMessageBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.newMessage,
+      page: () => const NewMessageView(),
+      binding: NewMessageBinding(),
+      fullscreenDialog: true,
+    ),
+    GetPage(
+  name: AppRoutes.chat,
+  page: () => const ChatView(),
+  binding: ChatBinding(),
+  transition: Transition.rightToLeft,
+),
   ];
 }
