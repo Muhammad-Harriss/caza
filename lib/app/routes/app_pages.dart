@@ -1,5 +1,9 @@
 import 'package:caza/features/messages/chat/bindings/chat_binding.dart';
 import 'package:caza/features/messages/chat/view/chat_view.dart';
+import 'package:caza/features/messages/group_chat/bindings/group_chat_binding.dart';
+import 'package:caza/features/messages/group_chat/view/group_chat_view.dart';
+import 'package:caza/features/messages/group_details/bindings/group_detail_binding.dart';
+import 'package:caza/features/messages/group_details/view/group_detail_view.dart';
 import 'package:caza/features/messages/new_messages/bindings/new_message_binding.dart';
 import 'package:caza/features/messages/new_messages/view/new_message_view.dart';
 import 'package:caza/features/messages/personal_messages/bindings/personal_message_binding.dart';
@@ -106,10 +110,22 @@ class AppPages {
       fullscreenDialog: true,
     ),
     GetPage(
-  name: AppRoutes.chat,
-  page: () => const ChatView(),
-  binding: ChatBinding(),
-  transition: Transition.rightToLeft,
-),
+      name: AppRoutes.chat,
+      page: () => const ChatView(),
+      binding: ChatBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.groupDetails,
+      page: () => const GroupDetailsView(),
+      binding: GroupDetailsBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.groupChat,
+      page: () => const GroupChatView(),
+      binding: GroupChatBinding(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

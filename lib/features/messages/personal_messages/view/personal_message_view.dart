@@ -83,53 +83,58 @@ class PersonalMessageView extends GetView<PersonalMessageViewModel> {
                   ),
                 )),
 
-            // ─── Empty state content ─────────────────
+            // ─── Empty state content (reactive to tab) ─────
             Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/Personal_Message.svg',
-                      width: 240,
-                      height: 240,
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: 295,
-                      child: Text(
-                        'Start your message',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                          height: 28 / 20,
-                          color: const Color(0xFF101828),
+              child: Obx(() {
+                final content = controller.emptyStateContent;
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        content.imagePath,
+                        width: 240,
+                        height: 240,
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        width: 295,
+                        child: Text(
+                          content.title,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            height: 28 / 20,
+                            color: const Color(0xFF101828),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: 295,
-                      child: Text(
-                        'Start conversation with other employee in your organization.',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          height: 20 / 12,
-                          color: const Color(0xFF475467),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: 295,
+                        child: Text(
+                          content.subtitle,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            height: 20 / 12,
+                            color: const Color(0xFF475467),
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    AppPrimaryButton(
-                      text: 'Add New Message',
-                      onPressed: controller.addNewMessage,
-                    ),
-                  ],
-                ),
-              ),
+                      const SizedBox(height: 24),
+                      AppPrimaryButton(
+                        text: content.buttonText,
+                        onPressed: controller.tabIndex.value == 0
+                            ? controller.addNewMessage
+                            : controller.createGroupChat,
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ),
 
             // ─── Bottom nav ───────────────────────────

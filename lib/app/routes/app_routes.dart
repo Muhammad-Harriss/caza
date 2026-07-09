@@ -25,12 +25,6 @@ abstract class AppRoutes {
   static const String starredMessages        = '/starred-messages';
   static const String media                  = '/media';
 
-  // Groups
-  static const String groups                 = '/groups';
-  static const String newGroup               = '/new-group';
-  static const String addMembers             = '/add-members';
-  static const String groupChat              = '/group-chat';
-  static const String groupInfo              = '/group-info';
 
   // Files
   static const String filesBoxView           = '/files/box-view';
@@ -60,6 +54,7 @@ abstract class AppRoutes {
   static const personalMessage = '/personal-message';
   static const newMessage = '/new-message';
   static const chat = '/chat'; 
-
+  static const groupDetails = '/group-details';
+  static const String groupChat = '/group-chat';
 
 }

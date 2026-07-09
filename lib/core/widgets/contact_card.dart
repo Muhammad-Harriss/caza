@@ -7,11 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 class ContactCard extends StatelessWidget {
   final ContactModel contact;
   final VoidCallback? onTap;
+  final bool showCheckbox;
+  final bool isSelected;
 
   const ContactCard({
     super.key,
     required this.contact,
     this.onTap,
+    this.showCheckbox = false,
+    this.isSelected = false,
   });
 
   @override
@@ -59,6 +63,26 @@ class ContactCard extends StatelessWidget {
                 ],
               ),
             ),
+            if (showCheckbox) ...[
+              const SizedBox(width: 8),
+              Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: isSelected ? const Color(0xFF444CE7) : Colors.white,
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: isSelected
+                        ? const Color(0xFF444CE7)
+                        : const Color(0xFFD0D5DD),
+                    width: 1.5,
+                  ),
+                ),
+                child: isSelected
+                    ? const Icon(Icons.check, size: 14, color: Colors.white)
+                    : null,
+              ),
+            ],
           ],
         ),
       ),
