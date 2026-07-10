@@ -56,5 +56,8 @@ abstract class AppRoutes {
   static const chat = '/chat'; 
   static const groupDetails = '/group-details';
   static const String groupChat = '/group-chat';
+  static const String newGroup = '/new-group';
+
+  
 
 }

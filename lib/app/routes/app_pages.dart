@@ -4,6 +4,10 @@ import 'package:caza/features/messages/group_chat/bindings/group_chat_binding.da
 import 'package:caza/features/messages/group_chat/view/group_chat_view.dart';
 import 'package:caza/features/messages/group_details/bindings/group_detail_binding.dart';
 import 'package:caza/features/messages/group_details/view/group_detail_view.dart';
+import 'package:caza/features/messages/home/bindings/home_binding.dart';
+import 'package:caza/features/messages/home/view/home_view.dart';
+import 'package:caza/features/messages/new_group/bindings/new_group_binding.dart';
+import 'package:caza/features/messages/new_group/view/new_group_view.dart';
 import 'package:caza/features/messages/new_messages/bindings/new_message_binding.dart';
 import 'package:caza/features/messages/new_messages/view/new_message_view.dart';
 import 'package:caza/features/messages/personal_messages/bindings/personal_message_binding.dart';
@@ -23,7 +27,6 @@ import 'package:caza/features/auth/fill_Profile/bindings/fill_profile_binding.da
 import 'package:caza/features/auth/account_ready/view/account_ready_screen.dart';
 import 'package:caza/features/auth/input_new_password/view/input_new_password_screen.dart';
 import 'package:caza/features/auth/password_changed_success/view/password_changed_success_screen.dart';
-
 import '../../features/auth/login/bindings/login_binding.dart';
 import '../../features/auth/signup/bindings/signup_binding.dart';
 import '../../features/auth/signup/views/signup_screen.dart';
@@ -31,7 +34,6 @@ import '../../features/auth/input_new_password/bindings/input_new_password_bindi
 import '../../features/auth/password_changed_success/bindings/password_changed_success_binding.dart';
 import '../../features/auth/biometric/bindings/biometric_binding.dart';
 import '../../features/auth/account_ready/bindings/account_ready_binding.dart';
-
 import 'app_routes.dart';
 
 class AppPages {
@@ -125,6 +127,17 @@ class AppPages {
       name: AppRoutes.groupChat,
       page: () => const GroupChatView(),
       binding: GroupChatBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.home,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.newGroup, // <-- Map the missing route asset name
+      page: () => const NewGroupView(), // <-- Call the view target
+      binding: NewGroupBinding(), // <-- Call its dependency binding configuration
       transition: Transition.rightToLeft,
     ),
   ];

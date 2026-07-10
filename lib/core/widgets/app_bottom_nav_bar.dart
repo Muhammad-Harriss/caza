@@ -5,11 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class NavItemData {
   final String iconPath;
+  final String? activeIconPath; // optional: swap asset entirely when active
   final String label;
   final double iconSize;
 
   const NavItemData({
     required this.iconPath,
+    this.activeIconPath,
     required this.label,
     this.iconSize = 24,
   });
@@ -26,11 +28,16 @@ class AppBottomNavBar extends StatelessWidget {
   });
 
   static const List<NavItemData> _items = [
-    NavItemData(iconPath: 'assets/images/Home_icon.svg', label: 'Home', iconSize: 28),
+    NavItemData(
+      iconPath: 'assets/images/Home_icon.svg',
+      activeIconPath: 'assets/images/light_Home_icon.svg',
+      label: 'Home',
+      iconSize: 28,
+    ),
     NavItemData(iconPath: 'assets/images/file_icon.svg', label: 'Files', iconSize: 24),
     NavItemData(iconPath: 'assets/images/messages_icon.svg', label: 'Messages', iconSize: 26),
     NavItemData(iconPath: 'assets/images/call_icon.svg', label: 'Calls', iconSize: 24),
-    NavItemData(iconPath: 'assets/images/Profile_icon.svg', label: 'You', iconSize: 24),
+    NavItemData(iconPath: 'assets/images/profile_icon.svg', label: 'You', iconSize: 24),
   ];
 
   @override
@@ -55,16 +62,23 @@ class AppBottomNavBar extends StatelessWidget {
           final isActive = index == currentIndex;
           final color = isActive ? const Color(0xFF444CE7) : Colors.black;
 
+          final iconPath = isActive && item.activeIconPath != null
+              ? item.activeIconPath!
+              : item.iconPath;
+
           return GestureDetector(
             onTap: () => onTap(index),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 SvgPicture.asset(
-                  item.iconPath,
+                  iconPath,
                   width: item.iconSize,
                   height: item.iconSize,
-                  colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+                  // Skip tint when using a dedicated active asset (it likely already has its own color)
+                  colorFilter: (isActive && item.activeIconPath != null)
+                      ? null
+                      : ColorFilter.mode(color, BlendMode.srcIn),
                 ),
                 const SizedBox(height: 4),
                 Text(
