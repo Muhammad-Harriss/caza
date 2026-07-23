@@ -21,12 +21,12 @@ class HomeViewModel extends GetxController {
     GroupSummaryModel(name: "Let's Holiday", imagePath: 'assets/images/Home2.jpg', memberCount: 8, isStarred: true),
   ];
 
-  final List<ContactModel> contacts = const [
-    ContactModel(name: 'Alexander', email: 'alexander@caza.com', imagePath: 'assets/images/NM1.jpg'),
-    ContactModel(name: 'August Hilton', email: 'augusthilton@caza.com', imagePath: 'assets/images/NM2.jpg'),
-    ContactModel(name: 'Josh Eigner', email: 'josheigner@caza.com', imagePath: 'assets/images/NM3.jpg'),
-    ContactModel(name: 'Noelle Norman', email: 'noellenorman@caza.com', imagePath: 'assets/images/NM4.jpg'),
-  ];
+  final RxList<ContactModel> contacts = <ContactModel>[
+    const ContactModel(name: 'Alexander', email: 'alexander@caza.com', imagePath: 'assets/images/NM1.jpg'),
+    const ContactModel(name: 'August Hilton', email: 'augusthilton@caza.com', imagePath: 'assets/images/NM2.jpg'),
+    const ContactModel(name: 'Josh Eigner', email: 'josheigner@caza.com', imagePath: 'assets/images/NM3.jpg'),
+    const ContactModel(name: 'Noelle Norman', email: 'noellenorman@caza.com', imagePath: 'assets/images/NM4.jpg'),
+  ].obs;
 
   void onSearchChanged(String value) {
     searchQuery.value = value;
@@ -41,8 +41,13 @@ class HomeViewModel extends GetxController {
 
   void onGroupTap(GroupSummaryModel group) {}
   void onContactTap(ContactModel contact) {}
-  
-  void addNewContact() {}
+
+  Future<void> addNewContact() async {
+    final result = await Get.toNamed(AppRoutes.addContact);
+    if (result is ContactModel) {
+      contacts.add(result);
+    }
+  }
 
   void addGroup() {
     // 1. Initialize the dependency binding manually to prevent "controller not found" errors

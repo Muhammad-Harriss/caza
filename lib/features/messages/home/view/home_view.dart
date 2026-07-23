@@ -73,15 +73,21 @@ class HomeView extends GetView<HomeViewModel> {
                     ),
                     const SizedBox(height: 4),
 
-                    ...controller.contacts.map(
-                      (contact) => Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: ContactCard(
-                          contact: contact,
-                          onTap: () => controller.onContactTap(contact),
-                        ),
-                      ),
-                    ),
+                    Obx(() => Column(
+                          children: controller.contacts
+                              .map(
+                                (contact) => Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 8),
+                                  child: ContactCard(
+                                    contact: contact,
+                                    onTap: () =>
+                                        controller.onContactTap(contact),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        )),
 
                     AddActionRow(
                       label: 'New Contact',

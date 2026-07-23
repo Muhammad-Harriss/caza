@@ -21,7 +21,6 @@ abstract class AppRoutes {
   static const String messages               = '/messages';
   
   static const String newConversation        = '/new-conversation';
-  static const String messagesSearch         = '/messages/search';
   static const String starredMessages        = '/starred-messages';
   static const String media                  = '/media';
 
@@ -57,6 +56,8 @@ abstract class AppRoutes {
   static const groupDetails = '/group-details';
   static const String groupChat = '/group-chat';
   static const String newGroup = '/new-group';
+  static const addContact = '/add-contact';
+  static const String messagesSearch = '/messages/search';
 
   
 

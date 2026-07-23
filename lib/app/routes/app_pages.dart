@@ -1,3 +1,5 @@
+import 'package:caza/features/messages/add_Contact/bindings/add_contact_binding.dart';
+import 'package:caza/features/messages/add_Contact/view/add_contact_view.dart';
 import 'package:caza/features/messages/chat/bindings/chat_binding.dart';
 import 'package:caza/features/messages/chat/view/chat_view.dart';
 import 'package:caza/features/messages/group_chat/bindings/group_chat_binding.dart';
@@ -12,6 +14,8 @@ import 'package:caza/features/messages/new_messages/bindings/new_message_binding
 import 'package:caza/features/messages/new_messages/view/new_message_view.dart';
 import 'package:caza/features/messages/personal_messages/bindings/personal_message_binding.dart';
 import 'package:caza/features/messages/personal_messages/view/personal_message_view.dart';
+import 'package:caza/features/messages/search/bindings/search_result_binding.dart';
+import 'package:caza/features/messages/search/view/search_result_view.dart';
 import 'package:get/get.dart';
 
 import 'package:caza/features/auth/forgot_password/bindings/forget_password_binding.dart';
@@ -135,10 +139,21 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: AppRoutes.newGroup, // <-- Map the missing route asset name
-      page: () => const NewGroupView(), // <-- Call the view target
-      binding: NewGroupBinding(), // <-- Call its dependency binding configuration
+      name: AppRoutes.newGroup,
+      page: () => const NewGroupView(),
+      binding: NewGroupBinding(),
       transition: Transition.rightToLeft,
     ),
+    GetPage(
+      name: AppRoutes.addContact,
+      page: () => const AddContactView(),
+      binding: AddContactBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+  name: AppRoutes.messagesSearch,
+  page: () => const SearchResultView(),
+  binding: SearchResultBinding(),
+),
   ];
 }

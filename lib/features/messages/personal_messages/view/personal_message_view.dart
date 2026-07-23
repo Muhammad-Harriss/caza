@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../app/routes/app_routes.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/app_search_field.dart';
 import '../../../../core/widgets/app_bottom_nav_bar.dart';
@@ -34,7 +35,13 @@ class PersonalMessageView extends GetView<PersonalMessageViewModel> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  AppSearchField(onChanged: controller.onSearchChanged),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(AppRoutes.messagesSearch),
+                    child: AbsorbPointer(
+                      child:
+                          AppSearchField(onChanged: controller.onSearchChanged),
+                    ),
+                  ),
                 ],
               ),
             ),
