@@ -1,7 +1,11 @@
+// lib/app/routes/app_pages.dart
+
 import 'package:caza/features/messages/add_Contact/bindings/add_contact_binding.dart';
 import 'package:caza/features/messages/add_Contact/view/add_contact_view.dart';
 import 'package:caza/features/messages/chat/bindings/chat_binding.dart';
 import 'package:caza/features/messages/chat/view/chat_view.dart';
+import 'package:caza/features/messages/contact_info/bindings/contact_info_binding.dart';
+import 'package:caza/features/messages/contact_info/view/contact_info_view.dart';
 import 'package:caza/features/messages/group_chat/bindings/group_chat_binding.dart';
 import 'package:caza/features/messages/group_chat/view/group_chat_view.dart';
 import 'package:caza/features/messages/group_details/bindings/group_detail_binding.dart';
@@ -151,9 +155,15 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(
-  name: AppRoutes.messagesSearch,
-  page: () => const SearchResultView(),
-  binding: SearchResultBinding(),
-),
+      name: AppRoutes.messagesSearch,
+      page: () => const SearchResultView(),
+      binding: SearchResultBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.contactInfo,
+      page: () => const ContactInfoView(),
+      binding: ContactInfoBinding(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

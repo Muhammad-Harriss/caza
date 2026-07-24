@@ -1,3 +1,5 @@
+// lib/app/routes/app_routes.dart
+
 abstract class AppRoutes {
   // Onboarding
   static const String onboarding             = '/';
@@ -19,11 +21,9 @@ abstract class AppRoutes {
 
   // Messages
   static const String messages               = '/messages';
-  
   static const String newConversation        = '/new-conversation';
   static const String starredMessages        = '/starred-messages';
   static const String media                  = '/media';
-
 
   // Files
   static const String filesBoxView           = '/files/box-view';
@@ -49,7 +49,7 @@ abstract class AppRoutes {
   static const String theme                  = '/profile/theme';
   static const String language               = '/profile/language';
 
-  //Personal Messages
+  // Personal Messages
   static const personalMessage = '/personal-message';
   static const newMessage = '/new-message';
   static const chat = '/chat'; 
@@ -58,7 +58,5 @@ abstract class AppRoutes {
   static const String newGroup = '/new-group';
   static const addContact = '/add-contact';
   static const String messagesSearch = '/messages/search';
-
-  
-
+  static const String contactInfo = '/contact-info'; // Added contactInfo route
 }

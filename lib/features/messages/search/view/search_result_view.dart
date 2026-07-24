@@ -209,7 +209,7 @@ class SearchResultView extends GetView<SearchResultViewModel> {
                       crossAxisSpacing: 9,
                       mainAxisSpacing: 12,
                       childAspectRatio:
-                          0.85, // slightly taller cells to fit 2-line titles without clipping
+                          0.85, // slightly taller cells tou  fit 2-line titles without clipping
                     ),
                     itemCount: controller.links.length,
                     itemBuilder: (context, index) {
